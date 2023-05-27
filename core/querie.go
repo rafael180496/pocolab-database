@@ -3,6 +3,7 @@ package core
 import (
 	"database/sql"
 	"encoding/json"
+	"encoding/xml"
 	"fmt"
 
 	"github.com/jmoiron/sqlx"
@@ -93,6 +94,27 @@ func (p *StConect) QueryJSON(query StQuery, cantrow int, indConect, indLimit boo
 		return nil, errJSON
 	}
 	return JSON, nil
+}
+
+/*
+QueryXML : Ejecuta un querie en la base de datos y
+
+	  devuelve un json dinamico para mostrar los datos donde le limitan la cantida
+		de registro que debe de devolver
+		indConect = true deja la conexion abierta
+		indLimit = true limite de fila si esta en false desactiva esta opcion
+*/
+func (p *StConect) QueryXML(query StQuery, cantrow int, indConect, indLimit bool) ([]byte, error) {
+	result, err := p.queryGeneric(query, cantrow, indConect, indLimit)
+	if err != nil {
+		return nil, err
+	}
+	bI, err := xml.MarshalIndent(result, "", "   ")
+	if err != nil {
+		return nil, err
+	}
+	xmlWithHeader := xml.Header + string(bI)
+	return []byte(xmlWithHeader), nil
 }
 
 /*
