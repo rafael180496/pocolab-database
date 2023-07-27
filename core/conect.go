@@ -230,14 +230,14 @@ func (p *StConect) ConfigINI(PathINI string) error {
 /*
 ConfigENV : lee las configuracion de la base de datos mediante variables de entorno
 Ejemplo:
-ENV USERDB = prueba
-ENV PASSWORD = prueba
-ENV SERVICENAME  = prueba
-ENV TPDB = POST
-ENV PORTDB = 5433
-ENV HOSTDB = Localhost
-ENV SSLMODE = opcional
-ENV  FILEDB = opcional sqllite
+ENV CNX_USER = prueba
+ENV CNX_PASSWORD = prueba
+ENV CNX_SERVICENAME  = prueba
+ENV CNX_TP= POST
+ENV CNX_PORT = 5433
+ENV CNX_HOST = Localhost
+ENV CNX_SSLMODE = opcional
+ENV CNX_FILEDB = opcional sqllite
 
 o en un archivo .env se colaca las variables
 */
@@ -245,16 +245,16 @@ func (p *StConect) ConfigENV() error {
 	var (
 		cad StCadConect
 	)
-	err := godotenv.Load()
-	if err != nil {
-		return fmt.Errorf("invalid load .env")
-	}
+	godotenv.Load()
 	cad.Pass = os.Getenv("CNX_PASSWORD")
-	cad.User = os.Getenv("CNX_USERDB")
+	cad.User = os.Getenv("CNX_USER")
 	cad.Name = os.Getenv("CNX_SERVICENAME")
-	cad.TP = os.Getenv("CNX_TPDB")
-	cad.Port = casting.ToInt(os.Getenv("CNX_PORTDB"))
-	cad.Host = os.Getenv("CNX_HOSTDB")
+	cad.TP = os.Getenv("CNX_TP")
+	portDb := os.Getenv("CNX_PORT")
+	if !utl.IsNilStr(portDb) {
+		cad.Port = casting.ToInt(portDb)
+	}
+	cad.Host = os.Getenv("CNX_HOST")
 	cad.Sslmode = os.Getenv("CNX_SSLMODE")
 	cad.File = os.Getenv("CNX_FILEDB")
 	if !cad.ValidCad() {
