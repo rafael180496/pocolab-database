@@ -129,7 +129,7 @@ func scanData(rows *sqlx.Rows, maxRows int, indLimit bool) ([]StData, error) {
 /*validTp : valida los tipos de conexion disponible*/
 func validTp(tp string) bool {
 	switch tp {
-	case SQLLite, Post, Mysql, Sqlser:
+	case SQLLite, Post, Mysql, Sqlser, Ora:
 		return true
 	default:
 		return false
