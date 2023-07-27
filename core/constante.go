@@ -91,7 +91,7 @@ var (
 	/*CADCONN : contiene el formato de las cadenas de conexion*/
 	CADCONN = map[string]string{
 		/*oracle://user:pass@server/service_name*/
-		Ora:     "oracle://%s:%s@%s:%d/%s",
+		Ora:     "oracle://%s:%s@%s/%s",
 		Post:    "postgres://%s:%s@%s:%d/%s?sslmode=%s",
 		Mysql:   "%s:%s@tcp(%s:%d)/%s",
 		Sqlser:  "server=%s;user id=%s;password=%s;port=%d;database=%s;",

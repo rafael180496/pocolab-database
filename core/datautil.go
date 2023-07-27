@@ -22,7 +22,11 @@ func strURL(tp string, conn StCadConect) (string, string) {
 	case Sqlser:
 		return PrefijosDB[tp], fmt.Sprintf(CADCONN[tp], conn.Host, conn.User, conn.Pass, conn.Port, conn.Name)
 	case Ora:
-		return PrefijosDB[tp], fmt.Sprintf(CADCONN[tp], conn.User, conn.Pass, conn.Host, conn.Name)
+		host := conn.Host
+		if conn.Port > 0 {
+			host += fmt.Sprintf(":%d", conn.Port)
+		}
+		return PrefijosDB[tp], fmt.Sprintf(CADCONN[tp], conn.User, conn.Pass, host, conn.Name)
 	case SQLLite:
 		return PrefijosDB[tp], fmt.Sprintf(CADCONN[tp], conn.File)
 	default:
