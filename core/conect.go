@@ -251,7 +251,7 @@ func (p *StConect) ConfigENV() error {
 	cad.Name = os.Getenv("CNX_SERVICENAME")
 	cad.TP = os.Getenv("CNX_TP")
 	portDb := os.Getenv("CNX_PORT")
-	if !utl.IsNilStr(portDb) {
+	if utl.IsNilStr(portDb) {
 		cad.Port = casting.ToInt(portDb)
 	}
 	cad.Host = os.Getenv("CNX_HOST")
