@@ -3,7 +3,7 @@ module github.com/rafael180496/pocolab-database
 go 1.20
 
 require (
-	github.com/rafael180496/pocolab-utils v1.0.1
+	github.com/rafael180496/pocolab-utils v1.0.2
 	gopkg.in/ini.v1 v1.67.0
 )
 
@@ -19,7 +19,7 @@ require (
 	github.com/mattn/go-colorable v0.1.13 // indirect
 	github.com/mattn/go-isatty v0.0.19 // indirect
 	github.com/mattn/go-sqlite3 v1.14.17
-	github.com/sijms/go-ora/v2 v2.7.11
-	golang.org/x/crypto v0.12.0 // indirect
-	golang.org/x/sys v0.11.0 // indirect
+	github.com/sijms/go-ora/v2 v2.7.17
+	golang.org/x/crypto v0.13.0 // indirect
+	golang.org/x/sys v0.12.0 // indirect
 )
