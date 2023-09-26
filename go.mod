@@ -3,7 +3,7 @@ module github.com/rafael180496/pocolab-database
 go 1.20
 
 require (
-	github.com/rafael180496/pocolab-utils v1.0.2
+	github.com/rafael180496/pocolab-utils v1.0.4
 	gopkg.in/ini.v1 v1.67.0
 )
 
